@@ -1,12 +1,15 @@
 const express = require('express');
 const collectionRouter = require('./collection');
 const indexRouter = require('./indexhome');
+const navbarRouter = require('./navbar');
 const userRouter = require('./user');
-const detailsRouter = require('./details');
-
+const productRouter = require('./products');
+const cartRouter = require('./cart');
 function route(app) {
     app.use('/collection', collectionRouter);
-    app.use('/products', detailsRouter);
+    app.use('/navbar', navbarRouter);
+    app.use('/products', productRouter);
+    app.use('/cart', cartRouter);
     app.use('/user', userRouter);
     app.use('/', indexRouter);
 }

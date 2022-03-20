@@ -16,7 +16,6 @@ class UserController {
                 name,
                 password: hashed
             })
-
             res.status(200).json(newCustomer)
         } catch (error) {
             res.status(500).json(error);
@@ -41,7 +40,7 @@ class UserController {
                     id: customer.id,
                     admin: customer.admin
                 }, process.env.JWT_ACCESS_TOKEN,
-                    { expiresIn: "55s" }
+                    { expiresIn: "365d" }
                 );
                 const refeshToken = jwt.sign({
                     id: customer.id,
@@ -49,7 +48,6 @@ class UserController {
                 }, process.env.JWT_REFESH_TOKEN,
                     { expiresIn: "10d" }
                 );
-
                 // save cookie
                 res.cookie("refeshToken", refeshToken, {
                     httpOnly: true,
